@@ -1,0 +1,8 @@
+## Interface: 11303
+## Title: ChodeyPlayer
+## Notes: Play sounds and music inside of the game.
+## Author: Alex Chodey
+## Version: 0.0.1
+## SavedVariables: SavedChodeyPlayerMusic
+
+musicChode.lua
