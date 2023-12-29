@@ -3,37 +3,14 @@ local soundType = {
     CUSTOM = 3
 }
 
--- local sounds = {
---     ["4"] = {
---         ["sound"] = "Interface\\AddOns\\musicChode\\Sounds\\custom3_filicias_dubstep.mp3",
---         ["description"] = "K-391 - This Is Felicitas!",
---         ["type"] = soundType.CUSTOM
---     },
---     ["3"] = {
---         ["sound"] = "Interface\\AddOns\\musicChode\\Sounds\\custom4_PSY_or_DIE.mp3",
---         ["description"] = "Carnage x Timmy Trumpet - PSY or DIE",
---         ["type"] = soundType.CUSTOM
---     },
---     ["2"] = {
---         ["sound"] = "Interface\\AddOns\\musicChode\\Sounds\\custom2_becoming_insane.mp3",
---         ["description"] = "Becoming Insane",
---         ["type"] = soundType.CUSTOM
---     },
---     ["1"] = {
---         ["sound"] = "Interface\\AddOns\\musicChode\\Sounds\\custom1.mp3",
---         ["description"] = "Lee Mvtthews - Dice (ft. Rachel Leo)",
---         ["type"] = soundType.CUSTOM
---     },
--- }
-
 -- Initialize the SavedVariable table if it doesn't exist
-SavedChodeyPlayerMusic = SavedChodeyPlayerMusic or {}
+AlexMusicPlayer = AlexMusicPlayer or {}
 
 
 -- Function to be called when the addon is loaded
 local function OnAddonLoaded()
-    sounds = SavedChodeyPlayerMusic
-    print("Addon loaded. Current SavedChodeyPlayerMusic contents:")
+    sounds = AlexMusicPlayer
+    print("Addon loaded. Current AlexMusicPlayer contents:")
     for label, soundData in pairs(sounds) do
         print("Label:", label, "Description:", soundData.description, "sound", soundData.sound)
         -- You can now directly assign your sounds object to use the SavedVariable
@@ -45,19 +22,19 @@ end
 local eventFrame = CreateFrame("Frame")
 eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:SetScript("OnEvent", function(self, event, addonName)
-    if event == "ADDON_LOADED" and addonName == "musicChode" then
+    if event == "ADDON_LOADED" and addonName == "AlexMusicPlayer" then
         OnAddonLoaded()
     end
 end)
 
-local function displaySoundList()
-    print("----------------------------")
-    for command in pairs(sounds) do
-        local description = sounds[command].description
-        print("Command: /playsound " .. command .. " - Description: " .. description)
-    end
-    print("----------------------------")
-end
+-- local function displaySoundList()
+--     print("----------------------------")
+--     for command in pairs(sounds) do
+--         local description = sounds[command].description
+--         print("Command: /playsound " .. command .. " - Description: " .. description)
+--     end
+--     print("----------------------------")
+-- end
 
 
 
@@ -99,12 +76,10 @@ local function playSoundHandler(trackId)
           
           playTrack(track)
       else
-          displaySoundList()
-          
           print(trackId .. " - Doesn't match a known track.")
       end
   else
-      displaySoundList()
+    print(trackId .. " - Doesn't match a known track.")
   end
 end
 
@@ -138,7 +113,7 @@ frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
 frame.title = frame:CreateFontString(nil, "OVERLAY")
 frame.title:SetFontObject("GameFontHighlight")
 frame.title:SetPoint("TOP", frame, "TOP", 0, -5)
-frame.title:SetText("Chodey's Music Player")
+frame.title:SetText("AlexMusicPlayer")
 
 -- Create a "Plus" button
 local plusButton = CreateFrame("Button", nil, frame, "GameMenuButtonTemplate")
@@ -158,7 +133,7 @@ magnifyingGlassIcon:SetSize(16, 16) -- Width and height of the icon
 
 -- Position the icon
 -- Adjust the coordinates (-10, -10) as needed to position the icon in the top right corner
-magnifyingGlassIcon:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -259, -33)
+magnifyingGlassIcon:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -245, -33)
 
 magnifyingGlassIcon:SetScript("OnEnter", function(self)
     GameTooltip:SetOwner(self, "ANCHOR_RIGHT") -- Position the tooltip
@@ -193,12 +168,12 @@ texture:SetTexCoord(0.07, 0.93, 0.07, 0.93)  -- Crop the texture to make it more
 
 
 
--- Register the /chodeyplayer command
-SLASH_CHODEYPLAYER1 = "/chode"
+-- Register the /AlexMusicPlayer command
+SLASH_ALEXPLAYER1 = "/AlexMusicPlayer"
 SLASH_SOUND1 = "/playsound"
 SLASH_STOPSOUND1 = "/stopsound"
 
-SlashCmdList["CHODEYPLAYER"] = ToggleMusicLibraryFrame
+SlashCmdList["ALEXPLAYER"] = ToggleMusicLibraryFrame
 SlashCmdList["SOUND"] = playSoundHandler;
 SlashCmdList["STOPSOUND"] = stopSoundHandler;
 
@@ -236,7 +211,7 @@ end
 -- Create an EditBox for the search input
 local searchBox = CreateFrame("EditBox", "MusicLibrarySearchBox", frame, "InputBoxTemplate")
 searchBox:SetSize(180, 20)
-searchBox:SetPoint("TOP", frame, "TOP", -12, -30)
+searchBox:SetPoint("TOP", frame, "TOP", 2, -30)
 searchBox:SetAutoFocus(false)
 searchBox:SetScript("OnTextChanged", function(self)
     local text = self:GetText()
@@ -258,7 +233,7 @@ stopButton:SetScript("OnClick", stopSoundHandler)
 
 -- Function to add a new sound
 local function addNewSound(label, description)
-    SavedChodeyPlayerMusic[label] = {
+    AlexMusicPlayer[label] = {
         sound = "Interface\\AddOns\\musicChode\\Sounds\\" .. label .. ".mp3",
         description = description,
         type = soundType.CUSTOM -- Assuming 'CUSTOM' is a valid type

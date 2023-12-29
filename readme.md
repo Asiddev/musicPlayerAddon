@@ -1,8 +1,8 @@
-Create a "sounds" folder in next to lua and toc files.
+Create a "sounds" folder next to lua and toc files.
 
 Put your mp3's in there.
-
-In game.
+----------------------------------------------------
+In game Instructions.
 
 - You can open player with drum on minimap
 - You can see music through dropdown once added.
@@ -13,6 +13,8 @@ In game.
 -Give it a name that will be seen in the dropdown
 
 Once added you can do a /reload and it should be in the dropdown
+
+--------------------------------------------------
 
 FIRST TIME USING WITH NO MUSIC FILE?
 
@@ -26,5 +28,8 @@ BassHunter- Now your gone
 Add song
 
 It will now be in the dropdown congrats.
+--> BassHunter- Now your gone
+
+
 
 Ty hope this works for people

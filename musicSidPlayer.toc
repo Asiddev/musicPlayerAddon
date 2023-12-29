@@ -1,0 +1,8 @@
+## Interface: 11303
+## Title: SidPlayer
+## Notes: Play sounds and music inside of the game.
+## Author: Alex Sidor
+## Version: 0.0.1
+## SavedVariables: AlexMusicPlayer
+
+musicSidPlayer.lua
